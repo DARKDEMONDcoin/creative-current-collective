@@ -13,17 +13,22 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as LocaleRouteImport } from './routes/$locale'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactSalesRouteImport } from './routes/contact-sales'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ForgotPasswordRouteImport } from './routes/forgot-password'
 import { Route as LinguistLoginRouteImport } from './routes/linguist-login'
 import { Route as LinguistRegisterRouteImport } from './routes/linguist-register'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as PortalRouteImport } from './routes/portal'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as LocaleIndexRouteImport } from './routes/$locale.index'
 import { Route as LocaleAboutRouteImport } from './routes/$locale.about'
 import { Route as LocalePricingRouteImport } from './routes/$locale.pricing'
 import { Route as LocaleQualityRouteImport } from './routes/$locale.quality'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as ProductAgencyRouteImport } from './routes/product.agency'
 import { Route as ProductCustomerRouteImport } from './routes/product.customer'
@@ -59,6 +64,16 @@ const ContactSalesRoute = ContactSalesRouteImport.update({
   path: '/contact-sales',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ForgotPasswordRoute = ForgotPasswordRouteImport.update({
+  id: '/forgot-password',
+  path: '/forgot-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LinguistLoginRoute = LinguistLoginRouteImport.update({
   id: '/linguist-login',
   path: '/linguist-login',
@@ -74,6 +89,11 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
@@ -82,6 +102,11 @@ const PricingRoute = PricingRouteImport.update({
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
   path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResourcesRoute = ResourcesRouteImport.update({
@@ -113,6 +138,11 @@ const LocaleQualityRoute = LocaleQualityRouteImport.update({
   id: '/quality',
   path: '/quality',
   getParentRoute: () => LocaleRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
@@ -191,11 +221,15 @@ export interface FileRoutesByFullPath {
   '/$locale': typeof LocaleRouteWithChildren
   '/about': typeof AboutRoute
   '/contact-sales': typeof ContactSalesRoute
+  '/dashboard': typeof DashboardRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/linguist-login': typeof LinguistLoginRoute
   '/linguist-register': typeof LinguistRegisterRoute
   '/login': typeof LoginRoute
+  '/portal': typeof PortalRoute
   '/pricing': typeof PricingRoute
   '/register': typeof RegisterRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/resources': typeof ResourcesRouteWithChildren
   '/support': typeof SupportRoute
   '/$locale/about': typeof LocaleAboutRoute
@@ -211,6 +245,7 @@ export interface FileRoutesByFullPath {
   '/services/contentech-human': typeof ServicesContentechHumanRoute
   '/services/localization-engineering': typeof ServicesLocalizationEngineeringRoute
   '/$locale/': typeof LocaleIndexRoute
+  '/admin/': typeof AdminIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/api/auth/check-org': typeof ApiAuthCheckOrgRoute
   '/api/auth/register': typeof ApiAuthRegisterRoute
@@ -221,11 +256,15 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact-sales': typeof ContactSalesRoute
+  '/dashboard': typeof DashboardRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/linguist-login': typeof LinguistLoginRoute
   '/linguist-register': typeof LinguistRegisterRoute
   '/login': typeof LoginRoute
+  '/portal': typeof PortalRoute
   '/pricing': typeof PricingRoute
   '/register': typeof RegisterRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/support': typeof SupportRoute
   '/$locale/about': typeof LocaleAboutRoute
   '/$locale/pricing': typeof LocalePricingRoute
@@ -240,6 +279,7 @@ export interface FileRoutesByTo {
   '/services/contentech-human': typeof ServicesContentechHumanRoute
   '/services/localization-engineering': typeof ServicesLocalizationEngineeringRoute
   '/$locale': typeof LocaleIndexRoute
+  '/admin': typeof AdminIndexRoute
   '/resources': typeof ResourcesIndexRoute
   '/api/auth/check-org': typeof ApiAuthCheckOrgRoute
   '/api/auth/register': typeof ApiAuthRegisterRoute
@@ -252,11 +292,15 @@ export interface FileRoutesById {
   '/$locale': typeof LocaleRouteWithChildren
   '/about': typeof AboutRoute
   '/contact-sales': typeof ContactSalesRoute
+  '/dashboard': typeof DashboardRoute
+  '/forgot-password': typeof ForgotPasswordRoute
   '/linguist-login': typeof LinguistLoginRoute
   '/linguist-register': typeof LinguistRegisterRoute
   '/login': typeof LoginRoute
+  '/portal': typeof PortalRoute
   '/pricing': typeof PricingRoute
   '/register': typeof RegisterRoute
+  '/reset-password': typeof ResetPasswordRoute
   '/resources': typeof ResourcesRouteWithChildren
   '/support': typeof SupportRoute
   '/$locale/about': typeof LocaleAboutRoute
@@ -272,6 +316,7 @@ export interface FileRoutesById {
   '/services/contentech-human': typeof ServicesContentechHumanRoute
   '/services/localization-engineering': typeof ServicesLocalizationEngineeringRoute
   '/$locale/': typeof LocaleIndexRoute
+  '/admin/': typeof AdminIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/api/auth/check-org': typeof ApiAuthCheckOrgRoute
   '/api/auth/register': typeof ApiAuthRegisterRoute
@@ -285,11 +330,15 @@ export interface FileRouteTypes {
     | '/$locale'
     | '/about'
     | '/contact-sales'
+    | '/dashboard'
+    | '/forgot-password'
     | '/linguist-login'
     | '/linguist-register'
     | '/login'
+    | '/portal'
     | '/pricing'
     | '/register'
+    | '/reset-password'
     | '/resources'
     | '/support'
     | '/$locale/about'
@@ -305,6 +354,7 @@ export interface FileRouteTypes {
     | '/services/contentech-human'
     | '/services/localization-engineering'
     | '/$locale/'
+    | '/admin/'
     | '/resources/'
     | '/api/auth/check-org'
     | '/api/auth/register'
@@ -315,11 +365,15 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact-sales'
+    | '/dashboard'
+    | '/forgot-password'
     | '/linguist-login'
     | '/linguist-register'
     | '/login'
+    | '/portal'
     | '/pricing'
     | '/register'
+    | '/reset-password'
     | '/support'
     | '/$locale/about'
     | '/$locale/pricing'
@@ -334,6 +388,7 @@ export interface FileRouteTypes {
     | '/services/contentech-human'
     | '/services/localization-engineering'
     | '/$locale'
+    | '/admin'
     | '/resources'
     | '/api/auth/check-org'
     | '/api/auth/register'
@@ -345,11 +400,15 @@ export interface FileRouteTypes {
     | '/$locale'
     | '/about'
     | '/contact-sales'
+    | '/dashboard'
+    | '/forgot-password'
     | '/linguist-login'
     | '/linguist-register'
     | '/login'
+    | '/portal'
     | '/pricing'
     | '/register'
+    | '/reset-password'
     | '/resources'
     | '/support'
     | '/$locale/about'
@@ -365,6 +424,7 @@ export interface FileRouteTypes {
     | '/services/contentech-human'
     | '/services/localization-engineering'
     | '/$locale/'
+    | '/admin/'
     | '/resources/'
     | '/api/auth/check-org'
     | '/api/auth/register'
@@ -377,11 +437,15 @@ export interface RootRouteChildren {
   LocaleRoute: typeof LocaleRouteWithChildren
   AboutRoute: typeof AboutRoute
   ContactSalesRoute: typeof ContactSalesRoute
+  DashboardRoute: typeof DashboardRoute
+  ForgotPasswordRoute: typeof ForgotPasswordRoute
   LinguistLoginRoute: typeof LinguistLoginRoute
   LinguistRegisterRoute: typeof LinguistRegisterRoute
   LoginRoute: typeof LoginRoute
+  PortalRoute: typeof PortalRoute
   PricingRoute: typeof PricingRoute
   RegisterRoute: typeof RegisterRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
   ResourcesRoute: typeof ResourcesRouteWithChildren
   SupportRoute: typeof SupportRoute
   AdminLoginRoute: typeof AdminLoginRoute
@@ -392,6 +456,7 @@ export interface RootRouteChildren {
   ServicesAiTrainingDataRoute: typeof ServicesAiTrainingDataRoute
   ServicesContentechHumanRoute: typeof ServicesContentechHumanRoute
   ServicesLocalizationEngineeringRoute: typeof ServicesLocalizationEngineeringRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   ApiAuthCheckOrgRoute: typeof ApiAuthCheckOrgRoute
   ApiAuthRegisterRoute: typeof ApiAuthRegisterRoute
   ApiAuthRegisterLinguistRoute: typeof ApiAuthRegisterLinguistRoute
@@ -427,6 +492,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactSalesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/forgot-password': {
+      id: '/forgot-password'
+      path: '/forgot-password'
+      fullPath: '/forgot-password'
+      preLoaderRoute: typeof ForgotPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/linguist-login': {
       id: '/linguist-login'
       path: '/linguist-login'
@@ -448,6 +527,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/pricing': {
       id: '/pricing'
       path: '/pricing'
@@ -460,6 +546,13 @@ declare module '@tanstack/react-router' {
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resources': {
@@ -503,6 +596,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/$locale/quality'
       preLoaderRoute: typeof LocaleQualityRouteImport
       parentRoute: typeof LocaleRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/admin/login': {
       id: '/admin/login'
@@ -643,11 +743,15 @@ const rootRouteChildren: RootRouteChildren = {
   LocaleRoute: LocaleRouteWithChildren,
   AboutRoute: AboutRoute,
   ContactSalesRoute: ContactSalesRoute,
+  DashboardRoute: DashboardRoute,
+  ForgotPasswordRoute: ForgotPasswordRoute,
   LinguistLoginRoute: LinguistLoginRoute,
   LinguistRegisterRoute: LinguistRegisterRoute,
   LoginRoute: LoginRoute,
+  PortalRoute: PortalRoute,
   PricingRoute: PricingRoute,
   RegisterRoute: RegisterRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
   ResourcesRoute: ResourcesRouteWithChildren,
   SupportRoute: SupportRoute,
   AdminLoginRoute: AdminLoginRoute,
@@ -658,6 +762,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesAiTrainingDataRoute: ServicesAiTrainingDataRoute,
   ServicesContentechHumanRoute: ServicesContentechHumanRoute,
   ServicesLocalizationEngineeringRoute: ServicesLocalizationEngineeringRoute,
+  AdminIndexRoute: AdminIndexRoute,
   ApiAuthCheckOrgRoute: ApiAuthCheckOrgRoute,
   ApiAuthRegisterRoute: ApiAuthRegisterRoute,
   ApiAuthRegisterLinguistRoute: ApiAuthRegisterLinguistRoute,
