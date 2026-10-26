@@ -30,6 +30,9 @@ import { Route as LocalePricingRouteImport } from './routes/$locale.pricing'
 import { Route as LocaleQualityRouteImport } from './routes/$locale.quality'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
+import { Route as DashboardBillingRouteImport } from './routes/dashboard.billing'
+import { Route as DashboardProjectsRouteImport } from './routes/dashboard.projects'
 import { Route as ProductAgencyRouteImport } from './routes/product.agency'
 import { Route as ProductCustomerRouteImport } from './routes/product.customer'
 import { Route as ProductLinguistRouteImport } from './routes/product.linguist'
@@ -45,6 +48,7 @@ import { Route as ApiAuthRegisterLinguistRouteImport } from './routes/api/auth/r
 import { Route as ApiNotificationsIndexRouteImport } from './routes/api/notifications/index'
 import { Route as ApiNotificationsReadAllRouteImport } from './routes/api/notifications/read-all'
 import { Route as ApiNotificationsUnreadCountRouteImport } from './routes/api/notifications/unread-count'
+import { Route as DashboardBillingSuccessRouteImport } from './routes/dashboard.billing_.success'
 import { Route as ResourcesCategorySlugRouteImport } from './routes/resources.category.$slug'
 import { Route as ApiNotificationsIdReadRouteImport } from './routes/api/notifications/$id.read'
 
@@ -153,6 +157,21 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/admin/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardIndexRoute = DashboardIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardBillingRoute = DashboardBillingRouteImport.update({
+  id: '/billing',
+  path: '/billing',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardProjectsRoute = DashboardProjectsRouteImport.update({
+  id: '/projects',
+  path: '/projects',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const ProductAgencyRoute = ProductAgencyRouteImport.update({
   id: '/product/agency',
   path: '/product/agency',
@@ -230,6 +249,11 @@ const ApiNotificationsUnreadCountRoute =
     path: '/api/notifications/unread-count',
     getParentRoute: () => rootRouteImport,
   } as any)
+const DashboardBillingSuccessRoute = DashboardBillingSuccessRouteImport.update({
+  id: '/billing_/success',
+  path: '/billing/success',
+  getParentRoute: () => DashboardRoute,
+} as any)
 const ResourcesCategorySlugRoute = ResourcesCategorySlugRouteImport.update({
   id: '/category/$slug',
   path: '/category/$slug',
@@ -246,7 +270,7 @@ export interface FileRoutesByFullPath {
   '/$locale': typeof LocaleRouteWithChildren
   '/about': typeof AboutRoute
   '/contact-sales': typeof ContactSalesRoute
-  '/dashboard': typeof DashboardRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/linguist-login': typeof LinguistLoginRoute
   '/linguist-register': typeof LinguistRegisterRoute
@@ -261,6 +285,8 @@ export interface FileRoutesByFullPath {
   '/$locale/pricing': typeof LocalePricingRoute
   '/$locale/quality': typeof LocaleQualityRoute
   '/admin/login': typeof AdminLoginRoute
+  '/dashboard/billing': typeof DashboardBillingRoute
+  '/dashboard/projects': typeof DashboardProjectsRoute
   '/product/agency': typeof ProductAgencyRoute
   '/product/customer': typeof ProductCustomerRoute
   '/product/linguist': typeof ProductLinguistRoute
@@ -271,12 +297,14 @@ export interface FileRoutesByFullPath {
   '/services/localization-engineering': typeof ServicesLocalizationEngineeringRoute
   '/$locale/': typeof LocaleIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/api/auth/check-org': typeof ApiAuthCheckOrgRoute
   '/api/auth/register': typeof ApiAuthRegisterRoute
   '/api/auth/register-linguist': typeof ApiAuthRegisterLinguistRoute
   '/api/notifications/read-all': typeof ApiNotificationsReadAllRoute
   '/api/notifications/unread-count': typeof ApiNotificationsUnreadCountRoute
+  '/dashboard/billing/success': typeof DashboardBillingSuccessRoute
   '/resources/category/$slug': typeof ResourcesCategorySlugRoute
   '/api/notifications/': typeof ApiNotificationsIndexRoute
   '/api/notifications/$id/read': typeof ApiNotificationsIdReadRoute
@@ -285,7 +313,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact-sales': typeof ContactSalesRoute
-  '/dashboard': typeof DashboardRoute
   '/forgot-password': typeof ForgotPasswordRoute
   '/linguist-login': typeof LinguistLoginRoute
   '/linguist-register': typeof LinguistRegisterRoute
@@ -299,6 +326,8 @@ export interface FileRoutesByTo {
   '/$locale/pricing': typeof LocalePricingRoute
   '/$locale/quality': typeof LocaleQualityRoute
   '/admin/login': typeof AdminLoginRoute
+  '/dashboard/billing': typeof DashboardBillingRoute
+  '/dashboard/projects': typeof DashboardProjectsRoute
   '/product/agency': typeof ProductAgencyRoute
   '/product/customer': typeof ProductCustomerRoute
   '/product/linguist': typeof ProductLinguistRoute
@@ -309,12 +338,14 @@ export interface FileRoutesByTo {
   '/services/localization-engineering': typeof ServicesLocalizationEngineeringRoute
   '/$locale': typeof LocaleIndexRoute
   '/admin': typeof AdminIndexRoute
+  '/dashboard': typeof DashboardIndexRoute
   '/resources': typeof ResourcesIndexRoute
   '/api/auth/check-org': typeof ApiAuthCheckOrgRoute
   '/api/auth/register': typeof ApiAuthRegisterRoute
   '/api/auth/register-linguist': typeof ApiAuthRegisterLinguistRoute
   '/api/notifications/read-all': typeof ApiNotificationsReadAllRoute
   '/api/notifications/unread-count': typeof ApiNotificationsUnreadCountRoute
+  '/dashboard/billing/success': typeof DashboardBillingSuccessRoute
   '/resources/category/$slug': typeof ResourcesCategorySlugRoute
   '/api/notifications': typeof ApiNotificationsIndexRoute
   '/api/notifications/$id/read': typeof ApiNotificationsIdReadRoute
@@ -325,7 +356,7 @@ export interface FileRoutesById {
   '/$locale': typeof LocaleRouteWithChildren
   '/about': typeof AboutRoute
   '/contact-sales': typeof ContactSalesRoute
-  '/dashboard': typeof DashboardRoute
+  '/dashboard': typeof DashboardRouteWithChildren
   '/forgot-password': typeof ForgotPasswordRoute
   '/linguist-login': typeof LinguistLoginRoute
   '/linguist-register': typeof LinguistRegisterRoute
@@ -340,6 +371,8 @@ export interface FileRoutesById {
   '/$locale/pricing': typeof LocalePricingRoute
   '/$locale/quality': typeof LocaleQualityRoute
   '/admin/login': typeof AdminLoginRoute
+  '/dashboard/billing': typeof DashboardBillingRoute
+  '/dashboard/projects': typeof DashboardProjectsRoute
   '/product/agency': typeof ProductAgencyRoute
   '/product/customer': typeof ProductCustomerRoute
   '/product/linguist': typeof ProductLinguistRoute
@@ -350,12 +383,14 @@ export interface FileRoutesById {
   '/services/localization-engineering': typeof ServicesLocalizationEngineeringRoute
   '/$locale/': typeof LocaleIndexRoute
   '/admin/': typeof AdminIndexRoute
+  '/dashboard/': typeof DashboardIndexRoute
   '/resources/': typeof ResourcesIndexRoute
   '/api/auth/check-org': typeof ApiAuthCheckOrgRoute
   '/api/auth/register': typeof ApiAuthRegisterRoute
   '/api/auth/register-linguist': typeof ApiAuthRegisterLinguistRoute
   '/api/notifications/read-all': typeof ApiNotificationsReadAllRoute
   '/api/notifications/unread-count': typeof ApiNotificationsUnreadCountRoute
+  '/dashboard/billing_/success': typeof DashboardBillingSuccessRoute
   '/resources/category/$slug': typeof ResourcesCategorySlugRoute
   '/api/notifications/': typeof ApiNotificationsIndexRoute
   '/api/notifications/$id/read': typeof ApiNotificationsIdReadRoute
@@ -382,6 +417,8 @@ export interface FileRouteTypes {
     | '/$locale/pricing'
     | '/$locale/quality'
     | '/admin/login'
+    | '/dashboard/billing'
+    | '/dashboard/projects'
     | '/product/agency'
     | '/product/customer'
     | '/product/linguist'
@@ -392,12 +429,14 @@ export interface FileRouteTypes {
     | '/services/localization-engineering'
     | '/$locale/'
     | '/admin/'
+    | '/dashboard/'
     | '/resources/'
     | '/api/auth/check-org'
     | '/api/auth/register'
     | '/api/auth/register-linguist'
     | '/api/notifications/read-all'
     | '/api/notifications/unread-count'
+    | '/dashboard/billing/success'
     | '/resources/category/$slug'
     | '/api/notifications/'
     | '/api/notifications/$id/read'
@@ -406,7 +445,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact-sales'
-    | '/dashboard'
     | '/forgot-password'
     | '/linguist-login'
     | '/linguist-register'
@@ -420,6 +458,8 @@ export interface FileRouteTypes {
     | '/$locale/pricing'
     | '/$locale/quality'
     | '/admin/login'
+    | '/dashboard/billing'
+    | '/dashboard/projects'
     | '/product/agency'
     | '/product/customer'
     | '/product/linguist'
@@ -430,12 +470,14 @@ export interface FileRouteTypes {
     | '/services/localization-engineering'
     | '/$locale'
     | '/admin'
+    | '/dashboard'
     | '/resources'
     | '/api/auth/check-org'
     | '/api/auth/register'
     | '/api/auth/register-linguist'
     | '/api/notifications/read-all'
     | '/api/notifications/unread-count'
+    | '/dashboard/billing/success'
     | '/resources/category/$slug'
     | '/api/notifications'
     | '/api/notifications/$id/read'
@@ -460,6 +502,8 @@ export interface FileRouteTypes {
     | '/$locale/pricing'
     | '/$locale/quality'
     | '/admin/login'
+    | '/dashboard/billing'
+    | '/dashboard/projects'
     | '/product/agency'
     | '/product/customer'
     | '/product/linguist'
@@ -470,12 +514,14 @@ export interface FileRouteTypes {
     | '/services/localization-engineering'
     | '/$locale/'
     | '/admin/'
+    | '/dashboard/'
     | '/resources/'
     | '/api/auth/check-org'
     | '/api/auth/register'
     | '/api/auth/register-linguist'
     | '/api/notifications/read-all'
     | '/api/notifications/unread-count'
+    | '/dashboard/billing_/success'
     | '/resources/category/$slug'
     | '/api/notifications/'
     | '/api/notifications/$id/read'
@@ -486,7 +532,7 @@ export interface RootRouteChildren {
   LocaleRoute: typeof LocaleRouteWithChildren
   AboutRoute: typeof AboutRoute
   ContactSalesRoute: typeof ContactSalesRoute
-  DashboardRoute: typeof DashboardRoute
+  DashboardRoute: typeof DashboardRouteWithChildren
   ForgotPasswordRoute: typeof ForgotPasswordRoute
   LinguistLoginRoute: typeof LinguistLoginRoute
   LinguistRegisterRoute: typeof LinguistRegisterRoute
@@ -664,6 +710,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/': {
+      id: '/dashboard/'
+      path: '/'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof DashboardIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/billing': {
+      id: '/dashboard/billing'
+      path: '/billing'
+      fullPath: '/dashboard/billing'
+      preLoaderRoute: typeof DashboardBillingRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/projects': {
+      id: '/dashboard/projects'
+      path: '/projects'
+      fullPath: '/dashboard/projects'
+      preLoaderRoute: typeof DashboardProjectsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/product/agency': {
       id: '/product/agency'
       path: '/product/agency'
@@ -769,6 +836,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiNotificationsUnreadCountRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard/billing_/success': {
+      id: '/dashboard/billing_/success'
+      path: '/billing/success'
+      fullPath: '/dashboard/billing/success'
+      preLoaderRoute: typeof DashboardBillingSuccessRouteImport
+      parentRoute: typeof DashboardRoute
+    }
     '/resources/category/$slug': {
       id: '/resources/category/$slug'
       path: '/category/$slug'
@@ -803,6 +877,24 @@ const LocaleRouteChildren: LocaleRouteChildren = {
 const LocaleRouteWithChildren =
   LocaleRoute._addFileChildren(LocaleRouteChildren)
 
+interface DashboardRouteChildren {
+  DashboardBillingRoute: typeof DashboardBillingRoute
+  DashboardProjectsRoute: typeof DashboardProjectsRoute
+  DashboardIndexRoute: typeof DashboardIndexRoute
+  DashboardBillingSuccessRoute: typeof DashboardBillingSuccessRoute
+}
+
+const DashboardRouteChildren: DashboardRouteChildren = {
+  DashboardBillingRoute: DashboardBillingRoute,
+  DashboardProjectsRoute: DashboardProjectsRoute,
+  DashboardIndexRoute: DashboardIndexRoute,
+  DashboardBillingSuccessRoute: DashboardBillingSuccessRoute,
+}
+
+const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
+  DashboardRouteChildren,
+)
+
 interface ResourcesRouteChildren {
   ResourcesSlugRoute: typeof ResourcesSlugRoute
   ResourcesIndexRoute: typeof ResourcesIndexRoute
@@ -824,7 +916,7 @@ const rootRouteChildren: RootRouteChildren = {
   LocaleRoute: LocaleRouteWithChildren,
   AboutRoute: AboutRoute,
   ContactSalesRoute: ContactSalesRoute,
-  DashboardRoute: DashboardRoute,
+  DashboardRoute: DashboardRouteWithChildren,
   ForgotPasswordRoute: ForgotPasswordRoute,
   LinguistLoginRoute: LinguistLoginRoute,
   LinguistRegisterRoute: LinguistRegisterRoute,
