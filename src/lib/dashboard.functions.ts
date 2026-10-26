@@ -30,13 +30,20 @@ export const getDashboardShell = createServerFn({ method: "GET" })
     const user = await loadMe(sb, context.userId);
     let orgPlan = "STARTER";
     if (user.organizationId) {
-      const { data } = await sb.from("ct_organizations").select("plan").eq("id", user.organizationId).maybeSingle();
+      const { data } = await sb
+        .from("ct_organizations")
+        .select("plan")
+        .eq("id", user.organizationId)
+        .maybeSingle();
       orgPlan = data?.plan ?? "STARTER";
     }
     const planSlug = orgPlan.toLowerCase() as PlanSlug;
     const featureFlags: Record<string, boolean> = {};
     for (const f of PLATFORM_FEATURES) featureFlags[f.key] = f.defaults[planSlug] ?? false;
-    const { data: rows } = await sb.from("ct_plan_features").select("feature,enabled").eq("plan_slug", planSlug);
+    const { data: rows } = await sb
+      .from("ct_plan_features")
+      .select("feature,enabled")
+      .eq("plan_slug", planSlug);
     for (const r of rows ?? []) featureFlags[r.feature] = r.enabled;
     return { user, orgPlan, featureFlags };
   });
@@ -86,7 +93,9 @@ export const getBilling = createServerFn({ method: "GET" })
     const user = await loadMe(sb, context.userId);
     const orgId = user.organizationId;
     const [org, tx, packages, rates] = await Promise.all([
-      orgId ? sb.from("ct_organizations").select("*").eq("id", orgId).maybeSingle() : { data: null },
+      orgId
+        ? sb.from("ct_organizations").select("*").eq("id", orgId).maybeSingle()
+        : { data: null },
       orgId
         ? sb
             .from("ct_credit_transactions")

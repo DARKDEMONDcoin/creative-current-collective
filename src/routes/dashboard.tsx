@@ -17,9 +17,15 @@ export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
       { title: "Client Portal — Contentech" },
-      { name: "description", content: "Manage your Contentech translation projects, team and billing." },
+      {
+        name: "description",
+        content: "Manage your Contentech translation projects, team and billing.",
+      },
       { property: "og:title", content: "Client Portal — Contentech" },
-      { property: "og:description", content: "Manage your Contentech translation projects, team and billing." },
+      {
+        property: "og:description",
+        content: "Manage your Contentech translation projects, team and billing.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "robots", content: "noindex" },
