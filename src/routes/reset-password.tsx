@@ -40,11 +40,18 @@ function ResetPassword() {
         <h1 className="text-2xl font-bold text-navy mb-6">Choose a new password</h1>
         {done ? (
           <p className="text-sm text-gray-600">
-            Password updated. <a href="/login" className="text-teal font-medium hover:underline">Sign in</a>
+            Password updated.{" "}
+            <a href="/login" className="text-teal font-medium hover:underline">
+              Sign in
+            </a>
           </p>
         ) : (
           <form onSubmit={submit} className="space-y-4">
-            {error && <div className="px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">{error}</div>}
+            {error && (
+              <div className="px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
+                {error}
+              </div>
+            )}
             <input
               type="password"
               required

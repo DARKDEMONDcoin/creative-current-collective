@@ -6,7 +6,8 @@ export const Route = createFileRoute("/$locale/quality")({
   head: ({ params }) =>
     pageHead("quality", params.locale, {
       title: "Translation Quality Engine — Contentech",
-      description: "How Contentech keeps terminology, tone and context consistent across every segment.",
+      description:
+        "How Contentech keeps terminology, tone and context consistent across every segment.",
     }),
   component: Page,
 });

@@ -12,7 +12,8 @@ const DEFAULTS: Record<string, Record<string, PageMetaData>> = {
       title: "Contentech — Enterprise Multilingual Translation Platform",
       description: "Combine AI speed with certified human expertise. Full control, every time.",
       ogTitle: "Contentech — Enterprise Translation Without Compromise",
-      ogDescription: "AI-powered translation with human-grade accuracy. Trusted by 1,000+ organizations.",
+      ogDescription:
+        "AI-powered translation with human-grade accuracy. Trusted by 1,000+ organizations.",
     },
     ar: {
       title: "كونتنتك — منصة الترجمة متعددة اللغات للمؤسسات",
@@ -38,7 +39,8 @@ const DEFAULTS: Record<string, Record<string, PageMetaData>> = {
   about: {
     en: {
       title: "About Contentech — Our Mission & Story",
-      description: "We build the hybrid translation ecosystem combining AI speed with human precision.",
+      description:
+        "We build the hybrid translation ecosystem combining AI speed with human precision.",
       ogTitle: "About Contentech",
       ogDescription: "Founded by linguists and engineers. Building the future of translation.",
     },

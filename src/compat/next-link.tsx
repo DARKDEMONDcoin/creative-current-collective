@@ -18,7 +18,17 @@ function toHref(href: Props["href"]) {
 }
 
 const Link = React.forwardRef<HTMLAnchorElement, Props>(function Link(
-  { href, prefetch: _p, replace, scroll: _s, legacyBehavior: _l, passHref: _ph, onClick, target, ...rest },
+  {
+    href,
+    prefetch: _p,
+    replace,
+    scroll: _s,
+    legacyBehavior: _l,
+    passHref: _ph,
+    onClick,
+    target,
+    ...rest
+  },
   ref,
 ) {
   const router = useRouter();

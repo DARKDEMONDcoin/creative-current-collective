@@ -9,8 +9,11 @@ export const Route = createFileRoute("/resources/$slug")({
     return article;
   },
   head: ({ loaderData }) => {
-    const title = loaderData ? loaderData.seoTitle || `${loaderData.title} — Contentech` : "Unavailable — Contentech";
-    const description = loaderData?.metaDescription || loaderData?.excerpt || "Contentech resources";
+    const title = loaderData
+      ? loaderData.seoTitle || `${loaderData.title} — Contentech`
+      : "Unavailable — Contentech";
+    const description =
+      loaderData?.metaDescription || loaderData?.excerpt || "Contentech resources";
     return {
       meta: [
         { title },

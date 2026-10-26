@@ -11,7 +11,8 @@ export const Route = createFileRoute("/resources/category/$slug")({
   head: ({ loaderData }) => {
     const c = loaderData?.category;
     const title = c ? `${c.name} — Resources — Contentech` : "Unavailable — Contentech";
-    const description = c?.description ?? (c ? `Resources and guides for ${c.name}` : "Contentech resources");
+    const description =
+      c?.description ?? (c ? `Resources and guides for ${c.name}` : "Contentech resources");
     return {
       meta: [
         { title },

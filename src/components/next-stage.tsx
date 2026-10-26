@@ -17,8 +17,8 @@ export function NextStage({ area, loginHref }: { area: string; loginHref: string
             <h1 className="text-xl font-semibold text-navy mb-2">{area}</h1>
             <p className="text-sm text-muted-foreground mb-6">
               Signed in as <strong>{data.user.email}</strong>
-              {data.user.role ? ` (${data.user.role.toLowerCase()})` : ""}. This area is being moved over and will be
-              available soon.
+              {data.user.role ? ` (${data.user.role.toLowerCase()})` : ""}. This area is being moved
+              over and will be available soon.
             </p>
             <Button variant="outline" onClick={() => signOut({ callbackUrl: "/" })}>
               Sign out
@@ -27,7 +27,9 @@ export function NextStage({ area, loginHref }: { area: string; loginHref: string
         ) : (
           <>
             <h1 className="text-xl font-semibold text-navy mb-2">Please sign in</h1>
-            <p className="text-sm text-muted-foreground mb-6">You need to be signed in to open the {area}.</p>
+            <p className="text-sm text-muted-foreground mb-6">
+              You need to be signed in to open the {area}.
+            </p>
             <Link href={loginHref}>
               <Button>Sign in</Button>
             </Link>

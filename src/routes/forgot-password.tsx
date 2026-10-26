@@ -41,10 +41,16 @@ function ForgotPassword() {
       <div className="w-full max-w-md bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
         <h1 className="text-2xl font-bold text-navy mb-2">Reset your password</h1>
         {sent ? (
-          <p className="text-sm text-gray-600">If an account exists for {email}, a reset link is on its way.</p>
+          <p className="text-sm text-gray-600">
+            If an account exists for {email}, a reset link is on its way.
+          </p>
         ) : (
           <form onSubmit={submit} className="space-y-4 mt-6">
-            {error && <div className="px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">{error}</div>}
+            {error && (
+              <div className="px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-sm text-red-700">
+                {error}
+              </div>
+            )}
             <input
               type="email"
               required
@@ -59,7 +65,9 @@ function ForgotPassword() {
           </form>
         )}
         <p className="mt-6 text-center text-sm">
-          <Link href="/login" className="text-teal font-medium hover:underline">Back to sign in</Link>
+          <Link href="/login" className="text-teal font-medium hover:underline">
+            Back to sign in
+          </Link>
         </p>
       </div>
     </AuthLayout>

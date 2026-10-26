@@ -8,7 +8,10 @@ export const Route = createFileRoute("/register")({
       { title: "Create Account — Contentech" },
       { name: "description", content: "Create your Contentech client account and workspace." },
       { property: "og:title", content: "Create Account — Contentech" },
-      { property: "og:description", content: "Create your Contentech client account and workspace." },
+      {
+        property: "og:description",
+        content: "Create your Contentech client account and workspace.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
