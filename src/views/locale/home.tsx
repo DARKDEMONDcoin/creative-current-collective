@@ -1,5 +1,4 @@
 import Link from "@/compat/next-link";
-import type { Metadata } from "next";
 import {
   ArrowRight, CheckCircle, Star, Zap, ChevronRight,
   Globe2, Clock, FileText,
@@ -12,10 +11,7 @@ import MarketingNav from "@/components/marketing/nav";
 import { Button } from "@/components/ui/button";
 import { HomeFAQ } from "@/components/marketing/home-faq";
 import HeroWizardDemo from "@/components/marketing/hero-wizard-demo";
-import { prisma } from "@/lib/prisma";
-import { getPageMeta, buildMetadata } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
 
 const TRUST_COMPANIES = [
   "LexCorp Legal", "DataScale AI", "PharmaTrans", "AlphaBank",
@@ -315,17 +311,11 @@ const PRIORITY_CHAIN = {
   ],
 };
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const meta = await getPageMeta("home", locale);
-  return buildMetadata(meta, locale, `/${locale}`);
-}
 
-export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: rawLocale } = await params;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function HomePage({ locale: rawLocale, siteConfigs, dbPlans }: { locale: string; siteConfigs: Array<{ key: string; value: any }>; dbPlans: any[] }) {
   const locale = rawLocale as "en" | "ar";
 
-  const siteConfigs = await prisma.siteConfig.findMany().catch(() => []);
   const rawMap: Record<string, any> = {};
   for (const c of siteConfigs) rawMap[c.key] = c.value;
 
@@ -364,10 +354,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
     ctaSecondary?: { text: string; href: string };
   } | null;
 
-  const dbPlans = await prisma.planConfig.findMany({
-    where: { isActive: true },
-    orderBy: { displayOrder: "asc" },
-  }).catch(() => []);
 
   const isRtl = locale === "ar";
 

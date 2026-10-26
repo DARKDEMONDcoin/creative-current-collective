@@ -10,33 +10,76 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiAuthCheckOrgRouteImport } from './routes/api/auth/check-org'
+import { Route as ApiAuthRegisterRouteImport } from './routes/api/auth/register'
+import { Route as ApiAuthRegisterLinguistRouteImport } from './routes/api/auth/register-linguist'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiAuthCheckOrgRoute = ApiAuthCheckOrgRouteImport.update({
+  id: '/api/auth/check-org',
+  path: '/api/auth/check-org',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthRegisterRoute = ApiAuthRegisterRouteImport.update({
+  id: '/api/auth/register',
+  path: '/api/auth/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAuthRegisterLinguistRoute = ApiAuthRegisterLinguistRouteImport.update({
+  id: '/api/auth/register-linguist',
+  path: '/api/auth/register-linguist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/auth/check-org': typeof ApiAuthCheckOrgRoute
+  '/api/auth/register': typeof ApiAuthRegisterRoute
+  '/api/auth/register-linguist': typeof ApiAuthRegisterLinguistRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/auth/check-org': typeof ApiAuthCheckOrgRoute
+  '/api/auth/register': typeof ApiAuthRegisterRoute
+  '/api/auth/register-linguist': typeof ApiAuthRegisterLinguistRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/auth/check-org': typeof ApiAuthCheckOrgRoute
+  '/api/auth/register': typeof ApiAuthRegisterRoute
+  '/api/auth/register-linguist': typeof ApiAuthRegisterLinguistRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/api/auth/check-org'
+    | '/api/auth/register'
+    | '/api/auth/register-linguist'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/api/auth/check-org'
+    | '/api/auth/register'
+    | '/api/auth/register-linguist'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/auth/check-org'
+    | '/api/auth/register'
+    | '/api/auth/register-linguist'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiAuthCheckOrgRoute: typeof ApiAuthCheckOrgRoute
+  ApiAuthRegisterRoute: typeof ApiAuthRegisterRoute
+  ApiAuthRegisterLinguistRoute: typeof ApiAuthRegisterLinguistRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +91,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/auth/check-org': {
+      id: '/api/auth/check-org'
+      path: '/api/auth/check-org'
+      fullPath: '/api/auth/check-org'
+      preLoaderRoute: typeof ApiAuthCheckOrgRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/register': {
+      id: '/api/auth/register'
+      path: '/api/auth/register'
+      fullPath: '/api/auth/register'
+      preLoaderRoute: typeof ApiAuthRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/auth/register-linguist': {
+      id: '/api/auth/register-linguist'
+      path: '/api/auth/register-linguist'
+      fullPath: '/api/auth/register-linguist'
+      preLoaderRoute: typeof ApiAuthRegisterLinguistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiAuthCheckOrgRoute: ApiAuthCheckOrgRoute,
+  ApiAuthRegisterRoute: ApiAuthRegisterRoute,
+  ApiAuthRegisterLinguistRoute: ApiAuthRegisterLinguistRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,18 +1,10 @@
 import Link from "@/compat/next-link";
-import type { Metadata } from "next";
 import { Globe2, ArrowRight, Users, Zap, ShieldCheck } from "lucide-react";
 import MarketingNav from "@/components/marketing/nav";
 import { Button } from "@/components/ui/button";
-import { getPageMeta, buildMetadata } from "@/lib/seo";
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const meta = await getPageMeta("about", locale);
-  return buildMetadata(meta, locale, `/${locale}/about`);
-}
 
-export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
+export default function AboutPage({ locale }: { locale: string }) {
   const isRtl = locale === "ar";
 
   const content = {

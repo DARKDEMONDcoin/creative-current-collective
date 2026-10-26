@@ -1,5 +1,4 @@
 import Link from "@/compat/next-link";
-import type { Metadata } from "next";
 import {
   Lock, FileText, Database, Briefcase, Zap, Activity,
   Globe2, Server, CheckCircle, UserCheck, Clock,
@@ -8,11 +7,6 @@ import {
 import MarketingNav from "@/components/marketing/nav";
 import { Button } from "@/components/ui/button";
 
-export const metadata: Metadata = {
-  title: "Quality Engine — How Contentech Guarantees Translation Accuracy",
-  description:
-    "Explore all 11 interlocking quality mechanisms built into every Contentech translation job: DNT enforcement, glossary injection, TM matching, context windows, LLM routing, human review, and more.",
-};
 
 const LAYERS = [
   {
@@ -158,12 +152,7 @@ const PRIORITY_CHAIN = [
   { num: 6, label: "Best Practice", color: "#94A3B8", bg: "rgba(255,255,255,0.06)" },
 ];
 
-export default async function QualityPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale: rawLocale } = await params;
+export default function QualityPage({ locale: rawLocale }: { locale: string }) {
   const locale = rawLocale as "en" | "ar";
   const isRtl = locale === "ar";
 

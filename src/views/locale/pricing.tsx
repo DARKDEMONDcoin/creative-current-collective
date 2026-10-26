@@ -1,12 +1,8 @@
 import Link from "@/compat/next-link";
-import type { Metadata } from "next";
 import { CheckCircle, Star, ArrowRight } from "lucide-react";
 import MarketingNav from "@/components/marketing/nav";
 import { Button } from "@/components/ui/button";
-import { prisma } from "@/lib/prisma";
-import { getPageMeta, buildMetadata } from "@/lib/seo";
 
-export const dynamic = "force-dynamic";
 
 const FALLBACK_PLANS = {
   en: [
@@ -181,21 +177,12 @@ const FALLBACK_PLANS = {
   ],
 };
 
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  const meta = await getPageMeta("pricing", locale);
-  return buildMetadata(meta, locale, `/${locale}/pricing`);
-}
 
-export default async function PricingPage({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale: rawLocale } = await params;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function PricingPage({ locale: rawLocale, dbPlans }: { locale: string; dbPlans: any[] }) {
   const locale = rawLocale as "en" | "ar";
   const isRtl = locale === "ar";
 
-  const dbPlans = await prisma.planConfig.findMany({
-    where: { isActive: true },
-    orderBy: { displayOrder: "asc" },
-  }).catch(() => []);
 
   const plans = dbPlans.length > 0
     ? dbPlans.map((p) => ({
