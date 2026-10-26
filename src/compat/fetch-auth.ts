@@ -16,7 +16,9 @@ export function installApiFetchAuth() {
       const { data } = await supabase.auth.getSession();
       const token = data.session?.access_token;
       if (token) {
-        const headers = new Headers(init?.headers ?? (input instanceof Request ? input.headers : undefined));
+        const headers = new Headers(
+          init?.headers ?? (input instanceof Request ? input.headers : undefined),
+        );
         if (!headers.has("authorization")) headers.set("authorization", `Bearer ${token}`);
         return original(input, { ...init, headers });
       }

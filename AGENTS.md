@@ -15,3 +15,5 @@
 - All Contentech tables are prefixed `ct_` and roles live in `ct_user_roles` (checked via `ct_has_role`). Why: the Supabase project also hosts another app's tables (profiles, organizations, notifications...).
 - Original `/api/*` endpoints called from the browser are recreated as TanStack server routes at the same path. Why: imported pages fetch them by URL.
 - tsconfig strictness flags are relaxed to match the original project. Why: imported code was written with `strict: false`.
+- Browser `fetch("/api/...")` gets the Supabase bearer token added by `src/compat/fetch-auth.ts`; server routes verify it with `requireApiUser` (src/lib/api-auth.ts). Why: original pages used cookie sessions.
+- DB rows are converted to the original camelCase Prisma shape with `camel()` (src/lib/ct-shape.ts) before reaching views. Why: views keep their original field names.
