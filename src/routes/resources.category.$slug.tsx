@@ -25,5 +25,9 @@ export const Route = createFileRoute("/resources/category/$slug")({
       ],
     };
   },
-  component: () => <ResourceCategoryPage {...Route.useLoaderData()} />,
+  component: Page,
 });
+
+function Page() {
+  return <ResourceCategoryPage {...Route.useLoaderData()} />;
+}
