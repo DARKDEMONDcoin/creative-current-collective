@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { LanguageProvider } from "@/lib/i18n/client";
+import { installApiFetchAuth } from "@/compat/fetch-auth";
 
 function NotFoundComponent() {
   return (
@@ -122,6 +123,9 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  useEffect(() => {
+    installApiFetchAuth();
+  }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
