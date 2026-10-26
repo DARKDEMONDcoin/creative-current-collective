@@ -16,11 +16,6 @@ import {
 import MarketingNav from "@/components/marketing/nav";
 import { Button } from "@/components/ui/button";
 
-export const metadata = {
-  title: "Contentech Human™ — Zero AI Tolerance Premium Translation | Contentech",
-  description:
-    "Certified human specialists for legal, life sciences, and high-stakes content. Zero AI involvement guaranteed with full audit trail.",
-};
 
 export default function ContentechHumanPage() {
   return (

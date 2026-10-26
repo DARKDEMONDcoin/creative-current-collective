@@ -15,11 +15,6 @@ import {
 import MarketingNav from "@/components/marketing/nav";
 import { Button } from "@/components/ui/button";
 
-export const metadata = {
-  title: "AI Training Data — Human-Verified Multilingual Datasets | Contentech",
-  description:
-    "High-quality annotated datasets, RLHF, and human-verified training data for LLM development at scale across 180+ languages.",
-};
 
 export default function AITrainingDataPage() {
   return (

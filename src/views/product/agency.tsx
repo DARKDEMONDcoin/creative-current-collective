@@ -7,11 +7,6 @@ import {
 import MarketingNav from "@/components/marketing/nav";
 import { Button } from "@/components/ui/button";
 
-export const metadata = {
-  title: "Product for Agencies — Multi-Client Translation Management | Contentech",
-  description:
-    "Manage multiple clients, separate workspaces, linguist networks, AI workflows, and brand assets from one central platform built for agency scale.",
-};
 
 const WORKFLOW_STEPS = [
   {
