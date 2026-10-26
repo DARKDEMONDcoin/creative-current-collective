@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import Link from "@/compat/next-link";
-import { signIn } from "@/compat/next-auth";
+import { signIn, getSession } from "@/compat/next-auth";
 import { Eye, EyeOff, Loader2, ArrowRight, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -33,8 +33,8 @@ export default function AdminLoginPage() {
       return;
     }
 
-    const check = await fetch("/api/auth/check-admin").then((r) => r.json());
-    if (check.role !== "ADMIN") {
+    const check = await getSession();
+    if (check?.user.role !== "ADMIN") {
       setLoading(false);
       setError("Access denied. This portal is for administrators only.");
       return;
