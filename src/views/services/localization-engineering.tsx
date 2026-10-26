@@ -16,11 +16,6 @@ import {
 import MarketingNav from "@/components/marketing/nav";
 import { Button } from "@/components/ui/button";
 
-export const metadata = {
-  title: "Localization Engineering — i18n Architecture & TMS Solutions | Contentech",
-  description:
-    "i18n architecture, TMS implementation, RTL engineering, and strategic localization consulting from engineering specialists.",
-};
 
 export default function LocalizationEngineeringPage() {
   return (

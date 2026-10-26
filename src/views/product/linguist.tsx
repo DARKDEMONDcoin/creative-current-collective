@@ -7,11 +7,6 @@ import {
 import MarketingNav from "@/components/marketing/nav";
 import { Button } from "@/components/ui/button";
 
-export const metadata = {
-  title: "Product for Linguists — Professional Content Workspace | Contentech",
-  description:
-    "Accept assignments, review AI drafts, access TM and glossaries, collaborate with comments, and deliver work inside a structured professional content platform.",
-};
 
 const TASK_LIFECYCLE = [
   {

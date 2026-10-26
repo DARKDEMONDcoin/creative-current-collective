@@ -7,11 +7,6 @@ import {
 import MarketingNav from "@/components/marketing/nav";
 import { Button } from "@/components/ui/button";
 
-export const metadata = {
-  title: "Product for Customers — Multilingual Content Management | Contentech",
-  description:
-    "Upload documents, choose AI or human workflows, attach glossaries and TM, manage approvals, and deliver translations with full enterprise governance.",
-};
 
 const HOW_IT_WORKS = [
   {

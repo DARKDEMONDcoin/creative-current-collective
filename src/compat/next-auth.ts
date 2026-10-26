@@ -35,7 +35,10 @@ export async function signIn(
   _provider: string,
   opts: { email: string; password: string; redirect?: boolean; callbackUrl?: string },
 ): Promise<{ ok: boolean; error?: string } | undefined> {
-  const { error } = await supabase.auth.signInWithPassword({ email: opts.email, password: opts.password });
+  const { error } = await supabase.auth.signInWithPassword({
+    email: opts.email,
+    password: opts.password,
+  });
   if (error) return { ok: false, error: "CredentialsSignin" };
   if (opts.redirect !== false && opts.callbackUrl) window.location.href = opts.callbackUrl;
   return { ok: true };

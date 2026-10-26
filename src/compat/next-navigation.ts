@@ -1,5 +1,9 @@
 // Drop-in replacement for `next/navigation` client hooks.
-import { notFound as tsNotFound, useLocation, useRouter as useTsRouter } from "@tanstack/react-router";
+import {
+  notFound as tsNotFound,
+  useLocation,
+  useRouter as useTsRouter,
+} from "@tanstack/react-router";
 import { useMemo } from "react";
 
 export function useRouter() {

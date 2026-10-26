@@ -17,11 +17,6 @@ import {
 import MarketingNav from "@/components/marketing/nav";
 import { Button } from "@/components/ui/button";
 
-export const metadata = {
-  title: "AI Quality Shield — Enterprise AI Translation Validation | Contentech",
-  description:
-    "Human experts validate AI-generated translations for accuracy, cultural fit, and legal compliance. Get your free linguistic risk assessment.",
-};
 
 export default function AIQualityShieldPage() {
   return (
