@@ -503,6 +503,316 @@ export type Database = {
           },
         ]
       }
+      ct_page_meta: {
+        Row: {
+          canonical: string | null
+          description: string | null
+          locale: string
+          no_index: boolean
+          og_description: string | null
+          og_image: string | null
+          og_title: string | null
+          page_key: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          canonical?: string | null
+          description?: string | null
+          locale?: string
+          no_index?: boolean
+          og_description?: string | null
+          og_image?: string | null
+          og_title?: string | null
+          page_key: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          canonical?: string | null
+          description?: string | null
+          locale?: string
+          no_index?: boolean
+          og_description?: string | null
+          og_image?: string | null
+          og_title?: string | null
+          page_key?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      ct_plan_config: {
+        Row: {
+          created_at: string
+          credits_per_cycle: number
+          cta_href: string
+          cta_text: string
+          description: string | null
+          description_ar: string | null
+          display_order: number
+          features: string[]
+          features_ar: string[]
+          id: string
+          is_active: boolean
+          is_popular: boolean
+          limits_json: Json | null
+          name: string
+          name_ar: string | null
+          period: string
+          price: number
+          slug: string
+          stripe_price_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          credits_per_cycle?: number
+          cta_href?: string
+          cta_text?: string
+          description?: string | null
+          description_ar?: string | null
+          display_order?: number
+          features?: string[]
+          features_ar?: string[]
+          id?: string
+          is_active?: boolean
+          is_popular?: boolean
+          limits_json?: Json | null
+          name: string
+          name_ar?: string | null
+          period?: string
+          price?: number
+          slug: string
+          stripe_price_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          credits_per_cycle?: number
+          cta_href?: string
+          cta_text?: string
+          description?: string | null
+          description_ar?: string | null
+          display_order?: number
+          features?: string[]
+          features_ar?: string[]
+          id?: string
+          is_active?: boolean
+          is_popular?: boolean
+          limits_json?: Json | null
+          name?: string
+          name_ar?: string | null
+          period?: string
+          price?: number
+          slug?: string
+          stripe_price_id?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      ct_resource_articles: {
+        Row: {
+          audiences: string[]
+          author_id: string | null
+          body: string
+          category_id: string | null
+          content_type: string
+          created_at: string
+          excerpt: string | null
+          featured: boolean
+          icon: string | null
+          id: string
+          meta_description: string | null
+          related_ids: string[]
+          seo_title: string | null
+          slug: string
+          sort_order: number
+          status: string
+          subtitle: string | null
+          tags: string[]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          audiences?: string[]
+          author_id?: string | null
+          body?: string
+          category_id?: string | null
+          content_type?: string
+          created_at?: string
+          excerpt?: string | null
+          featured?: boolean
+          icon?: string | null
+          id?: string
+          meta_description?: string | null
+          related_ids?: string[]
+          seo_title?: string | null
+          slug: string
+          sort_order?: number
+          status?: string
+          subtitle?: string | null
+          tags?: string[]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          audiences?: string[]
+          author_id?: string | null
+          body?: string
+          category_id?: string | null
+          content_type?: string
+          created_at?: string
+          excerpt?: string | null
+          featured?: boolean
+          icon?: string | null
+          id?: string
+          meta_description?: string | null
+          related_ids?: string[]
+          seo_title?: string | null
+          slug?: string
+          sort_order?: number
+          status?: string
+          subtitle?: string | null
+          tags?: string[]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ct_resource_articles_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "ct_resource_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ct_resource_categories: {
+        Row: {
+          color: string | null
+          created_at: string
+          description: string | null
+          icon: string | null
+          id: string
+          is_visible: boolean
+          name: string
+          slug: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          color?: string | null
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          is_visible?: boolean
+          name: string
+          slug: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          color?: string | null
+          created_at?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          is_visible?: boolean
+          name?: string
+          slug?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      ct_resource_faq_items: {
+        Row: {
+          answer: string
+          audiences: string[]
+          category_id: string | null
+          created_at: string
+          featured: boolean
+          id: string
+          question: string
+          sort_order: number
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          answer: string
+          audiences?: string[]
+          category_id?: string | null
+          created_at?: string
+          featured?: boolean
+          id?: string
+          question: string
+          sort_order?: number
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          answer?: string
+          audiences?: string[]
+          category_id?: string | null
+          created_at?: string
+          featured?: boolean
+          id?: string
+          question?: string
+          sort_order?: number
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ct_resource_faq_items_category_id_fkey"
+            columns: ["category_id"]
+            isOneToOne: false
+            referencedRelation: "ct_resource_categories"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ct_site_config: {
+        Row: {
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value: Json
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      ct_user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["ct_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["ct_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["ct_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
       document_chunks: {
         Row: {
           chunk_index: number
@@ -1421,6 +1731,13 @@ export type Database = {
       can_edit_campaign: { Args: { _c: string }; Returns: boolean }
       can_edit_org: { Args: { _org: string }; Returns: boolean }
       create_workspace: { Args: { _name: string }; Returns: string }
+      ct_has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["ct_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
       has_ws_role: {
         Args: { _role: Database["public"]["Enums"]["app_role"]; _ws: string }
         Returns: boolean
@@ -1443,6 +1760,7 @@ export type Database = {
     }
     Enums: {
       app_role: "super_admin" | "standard" | "viewer"
+      ct_role: "CLIENT" | "LINGUIST" | "ADMIN"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1571,6 +1889,7 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["super_admin", "standard", "viewer"],
+      ct_role: ["CLIENT", "LINGUIST", "ADMIN"],
     },
   },
 } as const
