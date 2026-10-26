@@ -1,11 +1,8 @@
-import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
 import Link from "@/compat/next-link";
 import { FolderOpen, Plus, Search, Filter, FileText, ArrowRight, ScanText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { formatDate } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
 
 const statusColors: Record<string, string> = {
   DRAFT: "bg-gray-100 text-gray-600",
@@ -23,21 +20,7 @@ const workflowLabels: Record<string, string> = {
   AI_HUMAN: "AI + Human",
 };
 
-export default async function ProjectsPage() {
-  const session = await auth();
-  const orgId = (session!.user as any).organizationId;
-
-  const projects = orgId
-    ? await prisma.project.findMany({
-        where: { organizationId: orgId },
-        orderBy: { createdAt: "desc" },
-        include: {
-          documents: true,
-          jobs: true,
-          attachedOcrRequest: { select: { id: true, sourceFilename: true } },
-        },
-      })
-    : [];
+export default function ProjectsPage({ projects }: { projects: any[] }) {
 
   return (
     <div className="p-8 max-w-6xl mx-auto">

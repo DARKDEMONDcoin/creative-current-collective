@@ -1,5 +1,3 @@
-import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
 import { CreditCard, Package, Star } from "lucide-react";
 import { formatDate } from "@/lib/utils";
 import Link from "@/compat/next-link";
@@ -7,38 +5,13 @@ import { InfoNote } from "@/components/ui/info-tip";
 import { PlanUpgradeButton, BuyCreditsButton, ManageBillingButton } from "./BillingActions";
 import { Button } from "@/components/ui/button";
 
-export const dynamic = "force-dynamic";
 
 function wordsPerPackage(totalCredits: number, creditsPerWord: number): string {
   if (!creditsPerWord || !totalCredits) return "—";
   return Math.floor(totalCredits / creditsPerWord).toLocaleString();
 }
 
-export default async function BillingPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ checkout?: string }>;
-}) {
-  const session = await auth();
-  const orgId = (session!.user as any).organizationId;
-  const params = await searchParams;
-
-  const [org, transactions, creditPackages, creditRates] = await Promise.all([
-    orgId ? prisma.organization.findUnique({ where: { id: orgId } }) : null,
-    orgId
-      ? prisma.creditTransaction.findMany({
-          where: { organizationId: orgId },
-          orderBy: { createdAt: "desc" },
-          take: 15,
-          include: { relatedProject: true },
-        })
-      : [],
-    prisma.creditPackage.findMany({
-      where: { isActive: true },
-      orderBy: { displayOrder: "asc" },
-    }),
-    prisma.creditRate.findMany(),
-  ]);
+export default function BillingPage({ params, org, transactions, creditPackages, creditRates }: { params: { checkout?: string }; org: any; transactions: any[]; creditPackages: any[]; creditRates: any[] }) {
 
   const planLabel = org?.plan ?? "STARTER";
   const planBadge: Record<string, string> = {

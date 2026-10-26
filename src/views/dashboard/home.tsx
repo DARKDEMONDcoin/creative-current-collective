@@ -1,5 +1,3 @@
-import { auth } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
 import Link from "@/compat/next-link";
 import {
   Plus,
@@ -13,34 +11,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { formatDate } from "@/lib/utils";
 
-export const dynamic = "force-dynamic";
 
-async function getDashboardData(userId: string, orgId: string) {
-  const [projects, recentProjects] = await Promise.all([
-    prisma.project.groupBy({
-      by: ["status"],
-      where: { organizationId: orgId },
-      _count: true,
-    }),
-    prisma.project.findMany({
-      where: { organizationId: orgId },
-      orderBy: { createdAt: "desc" },
-      take: 5,
-      include: { documents: true },
-    }),
-  ]);
 
-  return { projects, recentProjects };
-}
-
-export default async function DashboardPage() {
-  const session = await auth();
-  const user = session!.user;
-  const orgId = (user as any).organizationId;
-
-  const { projects, recentProjects } = orgId
-    ? await getDashboardData(user.id!, orgId)
-    : { projects: [], recentProjects: [] };
+export default function DashboardPage({ user, projects, recentProjects }: { user: any; projects: any[]; recentProjects: any[] }) {
 
   const statusCount = (status: string) =>
     projects.find((p: any) => p.status === status)?._count ?? 0;
