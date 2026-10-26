@@ -42,7 +42,11 @@ import { Route as ServicesLocalizationEngineeringRouteImport } from './routes/se
 import { Route as ApiAuthCheckOrgRouteImport } from './routes/api/auth/check-org'
 import { Route as ApiAuthRegisterRouteImport } from './routes/api/auth/register'
 import { Route as ApiAuthRegisterLinguistRouteImport } from './routes/api/auth/register-linguist'
+import { Route as ApiNotificationsIndexRouteImport } from './routes/api/notifications/index'
+import { Route as ApiNotificationsReadAllRouteImport } from './routes/api/notifications/read-all'
+import { Route as ApiNotificationsUnreadCountRouteImport } from './routes/api/notifications/unread-count'
 import { Route as ResourcesCategorySlugRouteImport } from './routes/resources.category.$slug'
+import { Route as ApiNotificationsIdReadRouteImport } from './routes/api/notifications/$id.read'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -210,10 +214,31 @@ const ApiAuthRegisterLinguistRoute = ApiAuthRegisterLinguistRouteImport.update({
   path: '/api/auth/register-linguist',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiNotificationsIndexRoute = ApiNotificationsIndexRouteImport.update({
+  id: '/api/notifications/',
+  path: '/api/notifications/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiNotificationsReadAllRoute = ApiNotificationsReadAllRouteImport.update({
+  id: '/api/notifications/read-all',
+  path: '/api/notifications/read-all',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiNotificationsUnreadCountRoute =
+  ApiNotificationsUnreadCountRouteImport.update({
+    id: '/api/notifications/unread-count',
+    path: '/api/notifications/unread-count',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ResourcesCategorySlugRoute = ResourcesCategorySlugRouteImport.update({
   id: '/category/$slug',
   path: '/category/$slug',
   getParentRoute: () => ResourcesRoute,
+} as any)
+const ApiNotificationsIdReadRoute = ApiNotificationsIdReadRouteImport.update({
+  id: '/api/notifications/$id/read',
+  path: '/api/notifications/$id/read',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -250,7 +275,11 @@ export interface FileRoutesByFullPath {
   '/api/auth/check-org': typeof ApiAuthCheckOrgRoute
   '/api/auth/register': typeof ApiAuthRegisterRoute
   '/api/auth/register-linguist': typeof ApiAuthRegisterLinguistRoute
+  '/api/notifications/read-all': typeof ApiNotificationsReadAllRoute
+  '/api/notifications/unread-count': typeof ApiNotificationsUnreadCountRoute
   '/resources/category/$slug': typeof ResourcesCategorySlugRoute
+  '/api/notifications/': typeof ApiNotificationsIndexRoute
+  '/api/notifications/$id/read': typeof ApiNotificationsIdReadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -284,7 +313,11 @@ export interface FileRoutesByTo {
   '/api/auth/check-org': typeof ApiAuthCheckOrgRoute
   '/api/auth/register': typeof ApiAuthRegisterRoute
   '/api/auth/register-linguist': typeof ApiAuthRegisterLinguistRoute
+  '/api/notifications/read-all': typeof ApiNotificationsReadAllRoute
+  '/api/notifications/unread-count': typeof ApiNotificationsUnreadCountRoute
   '/resources/category/$slug': typeof ResourcesCategorySlugRoute
+  '/api/notifications': typeof ApiNotificationsIndexRoute
+  '/api/notifications/$id/read': typeof ApiNotificationsIdReadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -321,7 +354,11 @@ export interface FileRoutesById {
   '/api/auth/check-org': typeof ApiAuthCheckOrgRoute
   '/api/auth/register': typeof ApiAuthRegisterRoute
   '/api/auth/register-linguist': typeof ApiAuthRegisterLinguistRoute
+  '/api/notifications/read-all': typeof ApiNotificationsReadAllRoute
+  '/api/notifications/unread-count': typeof ApiNotificationsUnreadCountRoute
   '/resources/category/$slug': typeof ResourcesCategorySlugRoute
+  '/api/notifications/': typeof ApiNotificationsIndexRoute
+  '/api/notifications/$id/read': typeof ApiNotificationsIdReadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -359,7 +396,11 @@ export interface FileRouteTypes {
     | '/api/auth/check-org'
     | '/api/auth/register'
     | '/api/auth/register-linguist'
+    | '/api/notifications/read-all'
+    | '/api/notifications/unread-count'
     | '/resources/category/$slug'
+    | '/api/notifications/'
+    | '/api/notifications/$id/read'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -393,7 +434,11 @@ export interface FileRouteTypes {
     | '/api/auth/check-org'
     | '/api/auth/register'
     | '/api/auth/register-linguist'
+    | '/api/notifications/read-all'
+    | '/api/notifications/unread-count'
     | '/resources/category/$slug'
+    | '/api/notifications'
+    | '/api/notifications/$id/read'
   id:
     | '__root__'
     | '/'
@@ -429,7 +474,11 @@ export interface FileRouteTypes {
     | '/api/auth/check-org'
     | '/api/auth/register'
     | '/api/auth/register-linguist'
+    | '/api/notifications/read-all'
+    | '/api/notifications/unread-count'
     | '/resources/category/$slug'
+    | '/api/notifications/'
+    | '/api/notifications/$id/read'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -460,6 +509,10 @@ export interface RootRouteChildren {
   ApiAuthCheckOrgRoute: typeof ApiAuthCheckOrgRoute
   ApiAuthRegisterRoute: typeof ApiAuthRegisterRoute
   ApiAuthRegisterLinguistRoute: typeof ApiAuthRegisterLinguistRoute
+  ApiNotificationsReadAllRoute: typeof ApiNotificationsReadAllRoute
+  ApiNotificationsUnreadCountRoute: typeof ApiNotificationsUnreadCountRoute
+  ApiNotificationsIndexRoute: typeof ApiNotificationsIndexRoute
+  ApiNotificationsIdReadRoute: typeof ApiNotificationsIdReadRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -695,12 +748,40 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthRegisterLinguistRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/notifications/': {
+      id: '/api/notifications/'
+      path: '/api/notifications'
+      fullPath: '/api/notifications/'
+      preLoaderRoute: typeof ApiNotificationsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/notifications/read-all': {
+      id: '/api/notifications/read-all'
+      path: '/api/notifications/read-all'
+      fullPath: '/api/notifications/read-all'
+      preLoaderRoute: typeof ApiNotificationsReadAllRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/notifications/unread-count': {
+      id: '/api/notifications/unread-count'
+      path: '/api/notifications/unread-count'
+      fullPath: '/api/notifications/unread-count'
+      preLoaderRoute: typeof ApiNotificationsUnreadCountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/resources/category/$slug': {
       id: '/resources/category/$slug'
       path: '/category/$slug'
       fullPath: '/resources/category/$slug'
       preLoaderRoute: typeof ResourcesCategorySlugRouteImport
       parentRoute: typeof ResourcesRoute
+    }
+    '/api/notifications/$id/read': {
+      id: '/api/notifications/$id/read'
+      path: '/api/notifications/$id/read'
+      fullPath: '/api/notifications/$id/read'
+      preLoaderRoute: typeof ApiNotificationsIdReadRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -766,6 +847,10 @@ const rootRouteChildren: RootRouteChildren = {
   ApiAuthCheckOrgRoute: ApiAuthCheckOrgRoute,
   ApiAuthRegisterRoute: ApiAuthRegisterRoute,
   ApiAuthRegisterLinguistRoute: ApiAuthRegisterLinguistRoute,
+  ApiNotificationsReadAllRoute: ApiNotificationsReadAllRoute,
+  ApiNotificationsUnreadCountRoute: ApiNotificationsUnreadCountRoute,
+  ApiNotificationsIndexRoute: ApiNotificationsIndexRoute,
+  ApiNotificationsIdReadRoute: ApiNotificationsIdReadRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
